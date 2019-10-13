@@ -1,0 +1,8 @@
+@mixin makeMeBottom($fontSize, $height) {
+  font-size: $fontSize;
+  height: $height;
+  background-color: #583602;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
