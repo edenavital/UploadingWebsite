@@ -17,7 +17,7 @@ $brownColor: #694308a4;
   text-align: center;
 
   &-top {
-    font-size: 15px;
+    font-size: 18px;
     height: 70%;
     background-color: $brownColor;
     margin: auto;
@@ -26,8 +26,12 @@ $brownColor: #694308a4;
     align-items: center;
   }
 
+  &-top > * {
+    margin-right: 10px;
+  }
+
   &-bottom {
-    @include makeMeBottom(16px, 30%);
+    @include makeMeBottom(15px, 30%);
   }
 
   span {

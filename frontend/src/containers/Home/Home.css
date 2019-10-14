@@ -21,5 +21,9 @@
 }
 
 .Home > * {
-  padding: 15px;
+  padding: 10px;
+}
+
+.Home form > * {
+  margin-right: 15px;
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import "./Button.css";
+
 const button = props => (
-  <div className="Button" type="submit">
+  <button className="Button" type={props.type} onClick={props.click}>
     {props.name}
-  </div>
+  </button>
 );
 
 export default button;
