@@ -2,8 +2,13 @@ const express = require("express");
 const app = express();
 const port = 5000;
 const bodyParser = require("body-parser");
-//[ id, name, url , ...]
-//GET TO THE STAGE WHERE THE BACKEND SHOWS THE OBJECTS YOU SEND... https://5000/api/media => SHOW ME THE OBJECTS!
+
+//Initial "database" - will be deleted
+//Tasks: Add a Spinner when requesting data from the server
+//       Add a delete button on each of the pictures
+//       Add a Modal component
+//       Add a pop up component for errors
+//       Add a progress bar to the Home component
 const images = [
   {
     id: 0,
