@@ -3,12 +3,16 @@ const app = express();
 const port = 5000;
 const bodyParser = require("body-parser");
 
-//Initial "database" - will be deleted
-//Tasks: Add a Spinner when requesting data from the server
+// Initial "database" - will be deleted
+// Tasks: Add a Spinner when requesting data from the server
 //       Add a delete button on each of the pictures
 //       Add a Modal component
 //       Add a pop up component for errors
 //       Add a progress bar to the Home component
+//       Connect the server to MongoDB
+//       Edit the README.md file in github
+//       Add an if statement - cannot upload anything that is not an image. (only jpg, png ...)
+
 const images = [
   {
     id: 0,
@@ -67,8 +71,12 @@ app.get(
   }
 );
 
-app.delete("/api/customers", (req, res, next) => {
-  media.pop();
+app.delete("/api/media/:id", (req, res, next) => {
+  images.pop();
+  app.get("/api/media", (req, res) => {
+    // res.json - receive an object or array, and converts it to JSON before sending it
+    res.json(images);
+  });
 });
 
 // app.put("/api/customers/:id", (req, res, next) => {
