@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Home.css";
 import Button from "../../components/Button/Button";
 //import Customers from "../../containers/Customers/Customers";
-import MediaItems from "../MediaItems/MediaItems";
+import MediaItems from "../../components/MediaItems/MediaItems";
 import axios from "axios";
 
 class Home extends Component {
@@ -12,6 +12,7 @@ class Home extends Component {
   };
   //Request get media - using in Mount (componentDidMount) and when Updating the media (Sending any other requests, e.g Post)
   updateMediaHandler = () => {
+    console.log("The current array: " + this.state.media);
     axios.get("/api/media").then(media => this.setState({ media: media.data }));
   };
 
@@ -41,10 +42,10 @@ class Home extends Component {
         .then(res => {
           console.log(res.data);
           this.updateMediaHandler();
-          this.setState({ selectedFile: null });
         })
         .catch(err => console.log(err));
     }
+    this.setState({ selectedFile: null });
   };
 
   render() {

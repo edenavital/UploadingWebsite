@@ -1,13 +1,14 @@
 .MediaItem {
   display: inline-block;
   padding: 2px 16px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
   transition: 0.3s;
-  margin: 8px;
+  margin: 6px;
+  position: relative;
 }
 .MediaItem img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 }
 .MediaItem:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
