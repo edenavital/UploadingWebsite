@@ -73,10 +73,8 @@ app.get(
 
 app.delete("/api/media/:id", (req, res, next) => {
   images.pop();
-  app.get("/api/media", (req, res) => {
-    // res.json - receive an object or array, and converts it to JSON before sending it
-    res.json(images);
-  });
+  res.send();
+  // res.json - receive an object or array, and converts it to JSON before sending it
 });
 
 // app.put("/api/customers/:id", (req, res, next) => {
