@@ -2,13 +2,13 @@ import React from "react";
 import "./MediaItems.css";
 import MediaItem from "../../components/MediaItem/MediaItem";
 import axios from "axios";
-// I HAVE MEDIA []
-
+//props.media, //props.update()
 const mediaitems = props => {
   //delete request to the server...
   const deleteFileHandler = () => {
     axios.delete("./api/media/:id", props.id).then(() => {
       //I SHOULD FETCH the new media [] from the backend... the question is how ?
+      props.update();
     });
   };
 

@@ -67,7 +67,10 @@ class Home extends Component {
             <Button name="Upload" type="submit" />
           </form>
 
-          <MediaItems media={this.state.media} />
+          <MediaItems
+            media={this.state.media}
+            update={this.updateMediaHandler}
+          />
         </div>
       </React.Fragment>
     );
