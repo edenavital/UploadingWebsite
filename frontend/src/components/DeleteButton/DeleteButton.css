@@ -1,0 +1,7 @@
+.DeleteButton {
+  position: absolute;
+  right: 10%;
+  top: 5px;
+
+  cursor: pointer;
+}

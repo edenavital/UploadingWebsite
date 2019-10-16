@@ -1,15 +1,19 @@
 import React from "react";
 import "./MediaItem.css";
-//per ITEM gets id, name, path
-const mediaitem = props => (
-  <div className="MediaItem">
-    <img src={props.path} alt="Media" />
-    <div>
-      <h4>
-        <b>{props.name}</b>
-      </h4>
+import DeleteButton from "../DeleteButton/DeleteButton";
+import axios from "axios";
+//Delete button gets as props - id, name, path, deleteImage(id)
+const mediaitem = props => {
+  return (
+    <div className="MediaItem">
+      <DeleteButton id={props.id} click={() => props.deleteImage(props.id)} />
+      <img src={props.path} alt="Media" />
+      <div>
+        <h4>
+          <b>{props.name}</b>
+        </h4>
+      </div>
     </div>
-  </div>
-);
-
+  );
+};
 export default mediaitem;

@@ -17,3 +17,9 @@
   color: black;
   border: 3px solid black;
 }
+
+button:disabled,
+button[disabled] {
+  background: grey;
+  border: 3px solid black;
+}

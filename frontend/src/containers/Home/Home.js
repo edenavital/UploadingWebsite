@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import "./Home.css";
 import Button from "../../components/Button/Button";
 //import Customers from "../../containers/Customers/Customers";
-import MediaItems from "../MediaItems/MediaItems";
+import MediaItems from "../../components/MediaItems/MediaItems";
 import axios from "axios";
 
 class Home extends Component {
   state = {
     selectedFile: null,
-    media: []
+    media: [],
+    uploadDisabled: true
   };
   //Request get media - using in Mount (componentDidMount) and when Updating the media (Sending any other requests, e.g Post)
   updateMediaHandler = () => {
+    console.log("The current array: " + this.state.media);
     axios.get("/api/media").then(media => this.setState({ media: media.data }));
   };
 
@@ -21,12 +23,19 @@ class Home extends Component {
 
   fileSelectedHandler = event => {
     console.log(event.target.files[0]);
-    this.setState({ selectedFile: event.target.files[0] });
-  };
+    this.setState({
+      selectedFile: event.target.files[0]
+    });
 
+    if (this.state.selectedFile != null) {
+      this.setState({
+        uploadDisabled: !this.state.uploadDisabled
+      });
+    }
+  };
   fileUploadHandler = e => {
     e.preventDefault();
-    if (this.state.selectedFile === null) {
+    if (this.state.selectedFile == null) {
       console.log(
         " fileUploadHandler invoked - YOU CANT SEND NOTHING TO THE SERVER... CHANGE IN POP UP MESSAGE"
       );
@@ -41,10 +50,13 @@ class Home extends Component {
         .then(res => {
           console.log(res.data);
           this.updateMediaHandler();
-          this.setState({ selectedFile: null });
         })
         .catch(err => console.log(err));
     }
+    this.setState({
+      selectedFile: null,
+      uploadDisabled: !this.state.uploadDisabled
+    });
   };
 
   render() {
@@ -63,10 +75,17 @@ class Home extends Component {
               ref={fileInput => (this.fileInput = fileInput)}
             />
             <Button name="Browse" click={() => this.fileInput.click()}></Button>
-            <Button name="Upload" type="submit" />
+            <Button
+              name="Upload"
+              type="submit"
+              disabled={this.state.uploadDisabled}
+            />
           </form>
 
-          <MediaItems media={this.state.media} />
+          <MediaItems
+            media={this.state.media}
+            update={this.updateMediaHandler}
+          />
         </div>
       </React.Fragment>
     );
