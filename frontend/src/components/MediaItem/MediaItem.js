@@ -2,11 +2,11 @@ import React from "react";
 import "./MediaItem.css";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import axios from "axios";
-//per ITEM gets id, name, path, delete()
+//Delete button gets as props - id, name, path, deleteImage(id)
 const mediaitem = props => {
   return (
     <div className="MediaItem">
-      <DeleteButton id={props.id} click={props.deleteImage} />
+      <DeleteButton id={props.id} click={() => props.deleteImage(props.id)} />
       <img src={props.path} alt="Media" />
       <div>
         <h4>

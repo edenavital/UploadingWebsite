@@ -8,7 +8,8 @@ import axios from "axios";
 class Home extends Component {
   state = {
     selectedFile: null,
-    media: []
+    media: [],
+    uploadDisabled: true
   };
   //Request get media - using in Mount (componentDidMount) and when Updating the media (Sending any other requests, e.g Post)
   updateMediaHandler = () => {
@@ -22,12 +23,19 @@ class Home extends Component {
 
   fileSelectedHandler = event => {
     console.log(event.target.files[0]);
-    this.setState({ selectedFile: event.target.files[0] });
-  };
+    this.setState({
+      selectedFile: event.target.files[0]
+    });
 
+    if (this.state.selectedFile != null) {
+      this.setState({
+        uploadDisabled: !this.state.uploadDisabled
+      });
+    }
+  };
   fileUploadHandler = e => {
     e.preventDefault();
-    if (this.state.selectedFile === null) {
+    if (this.state.selectedFile == null) {
       console.log(
         " fileUploadHandler invoked - YOU CANT SEND NOTHING TO THE SERVER... CHANGE IN POP UP MESSAGE"
       );
@@ -45,7 +53,10 @@ class Home extends Component {
         })
         .catch(err => console.log(err));
     }
-    this.setState({ selectedFile: null });
+    this.setState({
+      selectedFile: null,
+      uploadDisabled: !this.state.uploadDisabled
+    });
   };
 
   render() {
@@ -64,7 +75,11 @@ class Home extends Component {
               ref={fileInput => (this.fileInput = fileInput)}
             />
             <Button name="Browse" click={() => this.fileInput.click()}></Button>
-            <Button name="Upload" type="submit" />
+            <Button
+              name="Upload"
+              type="submit"
+              disabled={this.state.uploadDisabled}
+            />
           </form>
 
           <MediaItems
