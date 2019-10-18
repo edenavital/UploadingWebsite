@@ -1,7 +1,6 @@
 import React from "react";
 import "./MediaItem.css";
 import DeleteButton from "../DeleteButton/DeleteButton";
-import axios from "axios";
 //Delete button gets as props - id, name, path, deleteImage(id)
 const mediaitem = props => {
   return (
