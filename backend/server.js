@@ -12,6 +12,7 @@ const bodyParser = require("body-parser");
 //       Connect the server to MongoDB
 //       Edit the README.md file in github - V
 //       Add an if statement - cannot upload anything that is not an image. (only jpg, png ...)
+//       Make the Upload button disabled when nothing has been selected - V
 
 const images = [
   {
