@@ -33,6 +33,6 @@ $ cd frontend
 $ npm i
 $ cd .. && cd backend
 $ npm i
-$ npm run dev
+$ npm run dev (From backend directory)
 ```
 If the website not pop up automatically , Open a browser instance and type in the url: http://localhost:3000/
