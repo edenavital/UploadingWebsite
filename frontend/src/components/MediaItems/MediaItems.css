@@ -1,8 +1,12 @@
 .MediaItems {
-  width: 80%;
-  height: 55%;
+  width: 90%;
+  height: 65%;
   border: 3px solid black;
-  margin: 20px auto;
+  margin: auto auto !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .MediaItems ul {
   display: flex;
