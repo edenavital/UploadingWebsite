@@ -7,11 +7,7 @@ const mediaitem = props => {
     <div className="MediaItem">
       <DeleteButton id={props.id} click={() => props.deleteImage(props.id)} />
       <img src={props.path} alt="Media" />
-      <div>
-        <h4>
-          <b>{props.name}</b>
-        </h4>
-      </div>
+      <h4>{props.name}</h4>
     </div>
   );
 };

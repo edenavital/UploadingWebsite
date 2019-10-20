@@ -1,0 +1,15 @@
+.background {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  background-image: url("../../assets/images/homepage-background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: overlay;
+  filter: blur(3px);
+}

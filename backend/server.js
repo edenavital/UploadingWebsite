@@ -13,6 +13,9 @@ const bodyParser = require("body-parser");
 //       Edit the README.md file in github - V
 //       Add an if statement - cannot upload anything that is not an image. (only jpg, png ...)
 //       Make the Upload button disabled when nothing has been selected - V
+//       Trim the file extensions - V
+//       Add an Expand component for MediaItem, so the Picture will open in a pop up window - enlarged picture
+//       Implement Routes... Media - Pass the media [] state with its props
 
 const images = [
   {
@@ -53,7 +56,10 @@ app.use(function(req, res, next) {
 app.post("/api/media", (req, res, next) => {
   let newImage = {
     id: Date.now(),
-    name: req.body.name,
+    name: req.body.name
+      .split(".")
+      .slice(0, -1)
+      .join("."),
     path: req.body.path
   };
   images.push(newImage);
