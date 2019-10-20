@@ -12,14 +12,16 @@ In the future, they will be stored at MongoDB.
   - Upload images directly to the website's server
   - Communicatation to the backend with provided status codes
   - Delete component which deletes an uploaded image
+  - Spinner component. (Appears when fetching data)
+  - An indication that a file has been selected.
+  - Delete component which deletes an uploaded image.
+  - Use Routes in order to navigate between Home, MediaItems component
 
 ### Features in development :
-   - Add a Spinner component. (Show when fetching data)
-  - Add a Database. (MongoDB)
-  - Delete component which deletes an uploaded image.
+  - Add a Database. (MongoDB
   - Add a Modal component.
   - Add a progress bar to the Home component.
-  - Add an indication that a file has been selected.
+  
 
 
 ### How to launch the website
