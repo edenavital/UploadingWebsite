@@ -9,8 +9,9 @@ class Home extends Component {
   state = {
     selectedFile: { name: "null" },
     media: this.props.media,
-    uploadDisabled: this.props.uploadDisabled,
-    showModal: false
+    uploadDisabled: false,
+    showModal: false,
+    modalType: false
   };
 
   //Returns true if a file's type is image regardless it's type
@@ -30,7 +31,8 @@ class Home extends Component {
         this.setState({
           selectedFile: null,
           uploadDisabled: true,
-          showModal: true
+          showModal: true,
+          modalType: false
         });
       } else {
         this.setState({
@@ -56,8 +58,9 @@ class Home extends Component {
         .then(res => {
           console.log(res.data);
           this.props.updateMediaHandler();
+          this.setState({ showModal: true, modalType: true });
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err), this.props.updateLoadingHandler());
 
       this.setState({
         selectedFile: null,
@@ -84,7 +87,7 @@ class Home extends Component {
         <Modal
           showModal={this.state.showModal}
           closeModalHandler={this.closeModalHandler}
-          message="Error - The file's type is not supported"
+          type={this.state.modalType}
         />
         {spinner}
         <div className="Home">

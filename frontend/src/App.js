@@ -26,14 +26,14 @@ class App extends Component {
   //Request get media [] - using in Mount (componentDidMount) and when Updating the media (After sending any other requests, e.g Post)
   updateMediaHandler = () => {
     console.log("updateMediaHandler invoked");
-    this.updateLoadingHandler();
+    this.setState({ loading: true });
     axios
       .get("/api/media")
       .then(media => {
         this.setState({ media: media.data });
-        this.updateLoadingHandler();
+        this.setState({ loading: false });
       })
-      .catch(err => console.log(err), this.updateLoadingHandler());
+      .catch(err => console.log(err), this.setState({ loading: false }));
   };
 
   render() {
