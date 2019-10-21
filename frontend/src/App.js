@@ -6,7 +6,7 @@ import Home from "./containers/Home/Home";
 import MediaItems from "./components/MediaItems/MediaItems";
 import axios from "axios";
 class App extends Component {
-  //Initialize "Context" state (global) without Redux
+  //Initialize "Context" state (global) without Redux, just have to pass it to the children components
   state = {
     media: [],
     loading: false

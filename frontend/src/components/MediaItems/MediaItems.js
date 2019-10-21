@@ -7,11 +7,10 @@ const mediaitems = props => {
   //delete request to the server...
   const deleteFileHandler = idOfImage => {
     axios.delete("./api/media/" + idOfImage).then(() => {
-      //I SHOULD FETCH the new media [] from the backend... the question is how ?
       props.update();
     });
   };
-
+  //Dynamic MediaItems list
   let media = null;
 
   if (props.media.length > 0) {
