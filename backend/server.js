@@ -6,16 +6,15 @@ const bodyParser = require("body-parser");
 // Initial "database" - will be deleted
 // Tasks: Add a Spinner when requesting data from the server
 //       Add a delete button on each of the pictures - V
-//       Add a Modal component
 //       Add a pop up component for errors
-//       Add a progress bar to the Home component
+//       Add a progress bar to the Home component / Indication about Uploaded Files - Success message
 //       Connect the server to MongoDB
 //       Edit the README.md file in github - V
-//       Add an if statement - cannot upload anything that is not an image. (only jpg, png ...)
+//       Add an if statement - cannot upload anything that is not an image. (only jpg, png ...) - V
 //       Make the Upload button disabled when nothing has been selected - V
 //       Trim the file extensions - V
-//       Add an Expand component for MediaItem, so the Picture will open in a pop up window - enlarged picture
-//       Implement Routes... Media - Pass the media [] state with its props
+//       Add a Modal component for an Expand component - the Picture will open in a pop up window - enlarged picture
+//       Implement Routes - V
 
 const images = [
   {

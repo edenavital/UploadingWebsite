@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import "./Home.css";
 import Button from "../../components/Button/Button";
 import axios from "axios";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import Modal from "../../components/UI/Modal/Modal";
+
 class Home extends Component {
   state = {
     selectedFile: { name: "null" },
     media: this.props.media,
-    uploadDisabled: this.props.uploadDisabled
+    uploadDisabled: this.props.uploadDisabled,
+    showModal: false
   };
 
   //Returns true if a file's type is image regardless it's type
@@ -24,9 +27,11 @@ class Home extends Component {
       console.log(e.target.files[0]);
 
       if (!this.isFileImage(e.target.files[0])) {
-        console.log(
-          "The selected file is NOT an image - ADD A POP UP COMPONENT"
-        );
+        this.setState({
+          selectedFile: null,
+          uploadDisabled: true,
+          showModal: true
+        });
       } else {
         this.setState({
           selectedFile: e.target.files[0],
@@ -61,6 +66,10 @@ class Home extends Component {
     }
   };
 
+  closeModalHandler = () => {
+    this.setState({ showModal: false });
+  };
+
   render() {
     let spinner = null;
 
@@ -72,6 +81,11 @@ class Home extends Component {
 
     return (
       <>
+        <Modal
+          showModal={this.state.showModal}
+          closeModalHandler={this.closeModalHandler}
+          message="Error - The file's type is not supported"
+        />
         {spinner}
         <div className="Home">
           <h1>Welcome to my Uploading website</h1>
@@ -94,22 +108,6 @@ class Home extends Component {
             click={this.fileUploadHandler}
             disabled={this.state.uploadDisabled}
           />
-          {/* <MediaItems
-            media={this.state.media}
-            update={this.updateMediaHandler}
-          /> */}
-
-          {/* <Route
-            path="/media"
-            exact
-            render={props => (
-              <MediaItems
-                media={this.state.media}
-                update={this.state.updateMediaHandler}
-                {...props}
-              />
-            )}
-          /> */}
         </div>
       </>
     );
