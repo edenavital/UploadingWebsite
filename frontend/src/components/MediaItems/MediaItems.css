@@ -1,11 +1,11 @@
 .MediaItems {
   width: 90%;
-  height: 65%;
+  height: 70%;
   border: 3px solid black;
   margin: auto auto !important;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 47%;
   transform: translate(-50%, -50%);
 }
 .MediaItems ul {

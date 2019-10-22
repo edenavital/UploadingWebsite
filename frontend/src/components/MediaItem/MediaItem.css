@@ -5,15 +5,18 @@
   transition: 0.3s;
   margin: 6px;
   position: relative;
+  width: 200px;
+  height: 140px;
 }
 .MediaItem img {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 }
 .MediaItem:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.MediaItem.h4 {
+.MediaItem h4 {
+  overflow: hidden;
   text-overflow: ellipsis;
 }

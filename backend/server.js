@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 // Initial "database" - will be deleted
 // Tasks: Add a Spinner when requesting data from the server
 //       Add a delete button on each of the pictures - V
-//       Add a pop up component for errors
+//       Add a pop up component for errors - V
 //       Add a progress bar to the Home component / Indication about Uploaded Files - Success message
 //       Connect the server to MongoDB
 //       Edit the README.md file in github - V
