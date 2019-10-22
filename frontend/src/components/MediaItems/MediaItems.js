@@ -2,9 +2,9 @@ import React from "react";
 import "./MediaItems.css";
 import MediaItem from "../../components/MediaItem/MediaItem";
 import axios from "axios";
-//props.media, //props.update()
+//MediaItems gets: props.media, //props.update()
 const mediaitems = props => {
-  //delete request to the server...
+  //delete request to the server
   const deleteFileHandler = idOfImage => {
     axios.delete("./api/media/" + idOfImage).then(() => {
       props.update();
