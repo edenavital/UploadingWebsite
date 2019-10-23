@@ -31,11 +31,17 @@ const images = [
   }
 ];
 
+const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
+
+// the api route handler
+
 //GET REQUEST using fake media "data base"
 app.get("/api/media", (req, res) => {
   // res.json - receive an object or array, and converts it to JSON before sending it
-  res.json(images);
-  res.status(200);
+
+  sleep(5000).then(() => {
+    res.status(200).send(res.json(images));
+  });
 });
 //For using POST method, I have to use the package bodyParser, it converts the data to json format
 app.use(bodyParser.json()); // support json encoded bodies
