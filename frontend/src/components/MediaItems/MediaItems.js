@@ -1,35 +1,63 @@
-import React from "react";
+import React, { Component } from "react";
 import "./MediaItems.css";
 import MediaItem from "../../components/MediaItem/MediaItem";
 import axios from "axios";
-//props.media, //props.update()
-const mediaitems = props => {
-  //delete request to the server...
-  const deleteFileHandler = idOfImage => {
+import Spinner from "../UI/Spinner/Spinner";
+
+class MediaItems extends Component {
+  //delete request to the server
+  state = {
+    media: [],
+    loading: false
+  };
+
+  updateMediaHandler = () => {
+    console.log("updateMediaHandler invoked");
+    this.setState({ loading: true });
+    axios
+      .get("/api/media")
+      .then(media => {
+        this.setState({ media: media.data, loading: false });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ loading: false });
+      });
+  };
+
+  componentDidMount() {
+    this.updateMediaHandler();
+  }
+
+  deleteFileHandler = idOfImage => {
+    console.log("deleteFileHandler invoked");
     axios.delete("./api/media/" + idOfImage).then(() => {
-      props.update();
+      this.updateMediaHandler();
     });
   };
+
   //Dynamic MediaItems list
-  let media = null;
+  render() {
+    if (this.state.loading) return <Spinner />;
 
-  if (props.media.length > 0) {
-    media = props.media.map(image => (
-      <li key={image.id}>
-        <MediaItem
-          id={image.id}
-          name={image.name}
-          path={image.path}
-          deleteImage={deleteFileHandler}
-        />
-      </li>
-    ));
+    return (
+      <>
+        <div className="MediaItems">
+          <ul>
+            {this.state.media.map(image => (
+              <li key={image.id}>
+                <MediaItem
+                  id={image.id}
+                  name={image.name}
+                  path={image.path}
+                  deleteImage={this.deleteFileHandler}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </>
+    );
   }
-  return (
-    <div className="MediaItems">
-      <ul>{media}</ul>
-    </div>
-  );
-};
-
-export default mediaitems;
+}
+export default MediaItems;

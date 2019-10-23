@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 // Initial "database" - will be deleted
 // Tasks: Add a Spinner when requesting data from the server
 //       Add a delete button on each of the pictures - V
-//       Add a pop up component for errors
+//       Add a pop up component for errors - V
 //       Add a progress bar to the Home component / Indication about Uploaded Files - Success message
 //       Connect the server to MongoDB
 //       Edit the README.md file in github - V
@@ -30,12 +30,17 @@ const images = [
       "https://timesofindia.indiatimes.com/thumb/msid-67586673,width-800,height-600,resizemode-4/67586673.jpg"
   }
 ];
+//In order to fake a long request - using in order to test Spinner
+const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
 
 //GET REQUEST using fake media "data base"
 app.get("/api/media", (req, res) => {
   // res.json - receive an object or array, and converts it to JSON before sending it
   res.json(images);
   res.status(200);
+  // sleep(3000).then(() => {
+  //   res.status(200).send(res.json(images).status(200));
+  // });
 });
 //For using POST method, I have to use the package bodyParser, it converts the data to json format
 app.use(bodyParser.json()); // support json encoded bodies

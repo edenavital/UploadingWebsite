@@ -1,8 +1,8 @@
 import React from "react";
 import "./MediaItem.css";
 import DeleteButton from "../DeleteButton/DeleteButton";
-//Delete button gets as props - id, name, path, deleteImage(id)
-const mediaitem = props => {
+//Props: id, name, path, deleteImage(id)
+const MediaItem = props => {
   return (
     <div className="MediaItem">
       <DeleteButton id={props.id} click={() => props.deleteImage(props.id)} />
@@ -11,4 +11,4 @@ const mediaitem = props => {
     </div>
   );
 };
-export default mediaitem;
+export default MediaItem;
