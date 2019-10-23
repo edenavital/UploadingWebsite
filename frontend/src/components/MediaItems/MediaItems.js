@@ -8,7 +8,7 @@ class MediaItems extends Component {
   //delete request to the server
   state = {
     media: [],
-    loading: true
+    loading: false
   };
 
   updateMediaHandler = () => {
@@ -19,7 +19,10 @@ class MediaItems extends Component {
       .then(media => {
         this.setState({ media: media.data, loading: false });
       })
-      .catch(err => console.log(err), this.setState({ loading: false }));
+      .catch(err => {
+        console.log(err);
+        this.setState({ loading: false });
+      });
   };
 
   componentDidMount() {

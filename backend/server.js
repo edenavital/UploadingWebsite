@@ -30,6 +30,8 @@ const images = [
       "https://timesofindia.indiatimes.com/thumb/msid-67586673,width-800,height-600,resizemode-4/67586673.jpg"
   }
 ];
+//In order to fake a long request - using in order to test Spinner
+const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
 
 const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
 
@@ -38,10 +40,11 @@ const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
 //GET REQUEST using fake media "data base"
 app.get("/api/media", (req, res) => {
   // res.json - receive an object or array, and converts it to JSON before sending it
-
-  sleep(5000).then(() => {
-    res.status(200).send(res.json(images));
-  });
+  res.json(images);
+  res.status(200);
+  // sleep(3000).then(() => {
+  //   res.status(200).send(res.json(images).status(200));
+  // });
 });
 //For using POST method, I have to use the package bodyParser, it converts the data to json format
 app.use(bodyParser.json()); // support json encoded bodies
