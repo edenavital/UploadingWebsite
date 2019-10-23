@@ -33,14 +33,25 @@ const images = [
 //In order to fake a long request - using in order to test Spinner
 const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
 
+const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
+
+// the api route handler
+
 //GET REQUEST using fake media "data base"
 app.get("/api/media", (req, res) => {
   // res.json - receive an object or array, and converts it to JSON before sending it
+<<<<<<< HEAD
   res.json(images);
   res.status(200);
   // sleep(3000).then(() => {
   //   res.status(200).send(res.json(images).status(200));
   // });
+=======
+
+  sleep(5000).then(() => {
+    res.status(200).send(res.json(images));
+  });
+>>>>>>> 09c9377ad598e9a60973cf47cadc20ec48b26f3c
 });
 //For using POST method, I have to use the package bodyParser, it converts the data to json format
 app.use(bodyParser.json()); // support json encoded bodies
