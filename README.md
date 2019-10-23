@@ -4,18 +4,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Hello there,
 I built an uploading images website, using React and Express.
-In this website, the user can upload and delete images.
+In this website, the user can upload, view and delete images.
 At the moment, they are stored as blobs.
-In the future, they will be stored at MongoDB.
+In the future, they will be stored through MongoDB.
 
 ### Released Features :
-  - Upload images directly to the website's server
-  - Communicatation to the backend with provided status codes
-  - Delete component which deletes an uploaded image
-  - Spinner component. (Appears when fetching data)
-  - An indication that a file has been selected.
+  - Upload images directly to the website's server.
+  - Communicatation to the backend with provided status codes.
   - Delete component which deletes an uploaded image.
-  - Use Routes in order to navigate between Home, MediaItems component
+  - Spinner component. (Appears when fetching data).
+  - An indication that a file has been selected.
+  - Using Routes in order to navigate between Home, MediaItems component
+  - Backdrop & Modal component which indicates an Error / Successful upload
 
 ### Features in development :
   - Add a Database. (MongoDB

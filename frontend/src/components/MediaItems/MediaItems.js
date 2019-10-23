@@ -9,6 +9,7 @@ class MediaItems extends Component {
   state = {
     media: [],
     loading: true
+
   };
 
   updateMediaHandler = () => {
