@@ -22,7 +22,7 @@ class MediaItems extends Component {
       .catch(err => console.log(err), this.setState({ loading: false }));
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.updateMediaHandler();
   }
 
@@ -35,17 +35,10 @@ class MediaItems extends Component {
 
   //Dynamic MediaItems list
   render() {
-    let spinner = null;
-    if (this.state.loading) {
-      spinner = <Spinner />;
-    } else {
-      spinner = null;
-    }
     if (this.state.loading) return <Spinner />;
 
     return (
       <>
-        {spinner}
         <div className="MediaItems">
           <ul>
             {this.state.media.map(image => (

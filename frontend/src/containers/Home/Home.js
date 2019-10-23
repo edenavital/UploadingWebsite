@@ -7,7 +7,7 @@ import Modal from "../../components/UI/Modal/Modal";
 class Home extends Component {
   state = {
     selectedFile: { name: "null" },
-    uploadDisabled: false,
+    uploadDisabled: true,
     showModal: false,
     modalType: false
   };
