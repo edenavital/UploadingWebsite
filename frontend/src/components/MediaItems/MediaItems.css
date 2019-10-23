@@ -1,7 +1,7 @@
 .MediaItems {
   width: 90%;
   height: 70%;
-  border: 3px solid black;
+  /* border: 3px solid black; */
   margin: auto auto !important;
   position: absolute;
   left: 50%;
