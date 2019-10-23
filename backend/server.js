@@ -33,8 +33,6 @@ const images = [
 //In order to fake a long request - using in order to test Spinner
 const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
 
-const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
-
 // the api route handler
 
 //GET REQUEST using fake media "data base"

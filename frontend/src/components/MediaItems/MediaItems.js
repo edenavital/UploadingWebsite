@@ -8,7 +8,8 @@ class MediaItems extends Component {
   //delete request to the server
   state = {
     media: [],
-    loading: false
+    loading: true
+
   };
 
   updateMediaHandler = () => {
