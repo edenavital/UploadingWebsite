@@ -9,7 +9,7 @@ class Home extends Component {
     selectedFile: { name: "null" },
     isUploadDisabled: true,
     isModalVisible: false,
-    isModalPositive: false
+    modalType: "green"
   };
 
   //Returns true if a file's type is an image
@@ -26,7 +26,7 @@ class Home extends Component {
         selectedFile: null,
         isUploadDisabled: true,
         isModalVisible: true,
-        isModalPositive: false
+        modalType: "red"
       });
     } else {
       this.setState({
@@ -40,7 +40,6 @@ class Home extends Component {
   fileUploadHandler = e => {
     e.preventDefault();
     console.log("fileUploadHandler invoked");
-
     const newImage = {
       name: this.state.selectedFile.name,
       path: window.URL.createObjectURL(this.state.selectedFile)
@@ -49,7 +48,7 @@ class Home extends Component {
     axios
       .post("/api/media", newImage)
       .then(() => {
-        this.setState({ isModalVisible: true, isModalPositive: true });
+        this.setState({ isModalVisible: true, modalType: "green" });
       })
       .catch(err => console.log(err));
 
@@ -70,7 +69,7 @@ class Home extends Component {
         <Modal
           isModalVisible={this.state.isModalVisible}
           closeModalHandler={this.closeModalHandler}
-          isModalPositive={this.state.isModalPositive}
+          modalType={this.state.modalType}
         />
 
         <div className="Home">

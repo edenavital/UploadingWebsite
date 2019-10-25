@@ -3,17 +3,28 @@ import "./MediaItems.css";
 import MediaItem from "../../components/MediaItem/MediaItem";
 import axios from "axios";
 import Spinner from "../../components/UI/Spinner/Spinner";
-
+import Modal from "../../components/UI/Modal/Modal";
 class MediaItems extends Component {
   state = {
     images: [],
-    loading: true
+    loading: true,
+    isModalVisible: false,
+    path: "null"
   };
 
   //When the user clicks on Media route - fetch the images from the server
   componentDidMount() {
     this.getImagesHandler();
   }
+
+  //Manipulation of the Modal component - Closes it
+  closeModalHandler = () => {
+    this.setState({ isModalVisible: false });
+  };
+
+  openModalHandler = path => {
+    this.setState({ isModalVisible: true, path: path });
+  };
 
   //Updates the images array in client from the server
   getImagesHandler = () => {
@@ -50,12 +61,19 @@ class MediaItems extends Component {
           name={image.name}
           path={image.path}
           deleteImage={this.deleteFileHandler}
+          openModalHandler={this.openModalHandler}
         />
       </li>
     ));
 
     return (
       <>
+        <Modal
+          isModalVisible={this.state.isModalVisible}
+          closeModalHandler={this.closeModalHandler}
+          modalImagePath={this.state.path}
+          modalType="image"
+        />
         <div className="MediaItems">
           <ul>{media}</ul>
         </div>

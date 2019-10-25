@@ -18,3 +18,10 @@
   transform: translateY(0);
   opacity: 1;
 }
+
+.Image {
+  border: 5px solid brown;
+  border-radius: 50px;
+  width: 50%;
+  height: 50%;
+}
