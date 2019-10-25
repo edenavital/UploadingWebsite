@@ -1,9 +1,8 @@
 import React from "react";
 import "./Backdrop.css";
-
-//Backdrop props: show, clicked
+//props: isModalVisible, clicked()
 const Backdrop = props =>
-  props.showModal ? (
+  props.isModalVisible ? (
     <div className="Backdrop" onClick={props.clicked}></div>
   ) : null;
 

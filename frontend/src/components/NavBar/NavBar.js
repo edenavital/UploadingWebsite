@@ -2,7 +2,7 @@ import React from "react";
 import "./NavBar.css";
 import NavItem from "./NavItem/NavItem";
 
-const navbar = () => (
+const Navbar = () => (
   <nav className="NavBar">
     <ul>
       <NavItem link="/">Home</NavItem>
@@ -11,4 +11,4 @@ const navbar = () => (
   </nav>
 );
 
-export default navbar;
+export default Navbar;
