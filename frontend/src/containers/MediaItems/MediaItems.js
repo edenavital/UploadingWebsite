@@ -3,11 +3,13 @@ import "./MediaItems.css";
 import MediaItem from "../../components/MediaItem/MediaItem";
 import axios from "axios";
 import Spinner from "../../components/UI/Spinner/Spinner";
-
+import Modal from "../../components/UI/Modal/Modal";
 class MediaItems extends Component {
   state = {
     images: [],
-    loading: true
+    loading: true,
+    isModalVisible: false,
+    imagePath: null
   };
 
   //When the user clicks on Media route - fetch the images from the server
@@ -31,11 +33,21 @@ class MediaItems extends Component {
   };
 
   //Sends a request to the backend to delete an image with a specific id
-  deleteFileHandler = idOfImage => {
-    console.log("deleteFileHandler invoked");
+  deleteImageHandler = idOfImage => {
+    console.log("deleteImageHandler invoked");
     axios.delete("./api/media/" + idOfImage).then(() => {
       this.getImagesHandler();
     });
+  };
+
+  enlargeImageHandler = pathOfImage => {
+    console.log("enlargeImageHandler invoked");
+    this.setState({ isModalVisible: true, imagePath: pathOfImage });
+  };
+
+  //Manipulation of the Modal component - Closes it
+  closeModalHandler = () => {
+    this.setState({ isModalVisible: false });
   };
 
   render() {
@@ -49,13 +61,25 @@ class MediaItems extends Component {
           id={image.id}
           name={image.name}
           path={image.path}
-          deleteImage={this.deleteFileHandler}
+          deleteImageHandler={this.deleteImageHandler}
+          enlargeImageHandler={this.enlargeImageHandler}
         />
       </li>
     ));
 
     return (
       <>
+        <Modal
+          isModalVisible={this.state.isModalVisible}
+          closeModalHandler={this.closeModalHandler}
+        >
+          <img
+            src={this.state.imagePath}
+            alt="Media"
+            style={{ width: "650px", height: "450px" }}
+          />
+        </Modal>
+
         <div className="MediaItems">
           <ul>{media}</ul>
         </div>

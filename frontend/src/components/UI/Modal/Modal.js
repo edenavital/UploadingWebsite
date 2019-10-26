@@ -8,30 +8,21 @@ import Backdrop from "../Backdrop/Backdrop";
 // isModalPositive - Indicates a Successful upload or an Error message
 
 //TASK:
-// Change isModalPositive to ModalType string, add a switch case for modalType === "green" || "red" || "image"
-// In the MediaItems component, generate new states and import Modal component, use it when clicking on one of the MediaItem components
-// change 'message' variable to 'content'
+//Make the Modal dynamic by rendering props.children and then in the father components which calls Modal, just add what you want
+//to the Modal... for example: <Modal parameters> <h4>The image has been successfully uploaded!/</h4> </Modal>
+//You can pass many parameters and make this component much more flexible
 
 const Modal = props => {
   //Animates the Modal Pop up by toggling class 'On'
   let className = props.isModalVisible ? "Modal On" : "Modal";
 
-  //Modal's message to the user, depending on the prop.isModalPositive
-  let message = props.isModalPositive ? (
-    <h4 style={{ color: "green" }}>
-      The image has been successfully uploaded!
-    </h4>
-  ) : (
-    <h4 style={{ color: "red" }}>The selected file is not an image!</h4>
-  );
-
   return (
     <>
       <Backdrop
         isModalVisible={props.isModalVisible}
-        clicked={props.closeModalHandler}
+        closeModalHandler={props.closeModalHandler}
       />
-      <div className={className}>{message}</div>
+      <div className={className}>{props.children}</div>
     </>
   );
 };

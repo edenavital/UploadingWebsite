@@ -9,7 +9,7 @@ class Home extends Component {
     selectedFile: { name: "null" },
     isUploadDisabled: true,
     isModalVisible: false,
-    isModalPositive: false
+    isModalPositive: true
   };
 
   //Returns true if a file's type is an image
@@ -31,7 +31,8 @@ class Home extends Component {
     } else {
       this.setState({
         selectedFile: e.target.files[0],
-        isUploadDisabled: false
+        isUploadDisabled: false,
+        isModalPositive: true
       });
     }
   };
@@ -49,7 +50,7 @@ class Home extends Component {
     axios
       .post("/api/media", newImage)
       .then(() => {
-        this.setState({ isModalVisible: true, isModalPositive: true });
+        this.setState({ isModalVisible: true });
       })
       .catch(err => console.log(err));
 
@@ -65,13 +66,32 @@ class Home extends Component {
   };
 
   render() {
+    //Modal's message to the user, depending on the state - isModalPositive
+    let message = this.state.isModalPositive ? (
+      <h4 style={{ color: "green" }}>
+        The image has been successfully uploaded!
+      </h4>
+    ) : (
+      <h4 style={{ color: "red" }}>The selected file is not an image!</h4>
+    );
+
     return (
       <>
         <Modal
           isModalVisible={this.state.isModalVisible}
           closeModalHandler={this.closeModalHandler}
-          isModalPositive={this.state.isModalPositive}
-        />
+        >
+          <div
+            style={{
+              backgroundColor: "white",
+              border: "1px solid #ccc",
+              boxShadow: "1px 1px 1px black",
+              padding: "16px"
+            }}
+          >
+            {message}
+          </div>
+        </Modal>
 
         <div className="Home">
           <h1>Welcome to my Uploading website</h1>
