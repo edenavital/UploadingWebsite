@@ -4,14 +4,16 @@
   left: 50%;
   top: 50%;
   box-sizing: border-box;
-  transition: all 0.5s ease-out;
+  transition: all 0.55s ease-out;
   opacity: 0;
-  /* transform: translateY(-100vh); */
-  transform: translate(-50%, -100vh);
+  transform: translate(-50%, -150vh);
 }
 
-.On {
+.Text {
   transform: translate(-50%, -20vh);
-  /* transform: translate(-50%, -50%); */
+  opacity: 1;
+}
+.Image {
+  transform: translate(-50%, -50%);
   opacity: 1;
 }

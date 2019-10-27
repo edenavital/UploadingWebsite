@@ -39,7 +39,7 @@ class MediaItems extends Component {
       this.getImagesHandler();
     });
   };
-
+  //Expand the selected image by opening it through the Modal component
   enlargeImageHandler = pathOfImage => {
     console.log("enlargeImageHandler invoked");
     this.setState({ isModalVisible: true, imagePath: pathOfImage });
@@ -66,17 +66,20 @@ class MediaItems extends Component {
         />
       </li>
     ));
-
     return (
       <>
         <Modal
           isModalVisible={this.state.isModalVisible}
           closeModalHandler={this.closeModalHandler}
+          addClass="Image"
         >
           <img
             src={this.state.imagePath}
             alt="Media"
-            style={{ width: "650px", height: "450px" }}
+            style={{
+              width: "70vw",
+              height: "85vh"
+            }}
           />
         </Modal>
 

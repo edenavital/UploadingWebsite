@@ -80,13 +80,15 @@ class Home extends Component {
         <Modal
           isModalVisible={this.state.isModalVisible}
           closeModalHandler={this.closeModalHandler}
+          addClass="Text"
         >
           <div
             style={{
               backgroundColor: "white",
               border: "1px solid #ccc",
               boxShadow: "1px 1px 1px black",
-              padding: "16px"
+              padding: "16px",
+              width: "70vw"
             }}
           >
             {message}
