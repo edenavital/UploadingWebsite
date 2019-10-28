@@ -45,8 +45,8 @@ app.get("/api/media", (req, res) => {
   // });
 });
 //For using POST method, I have to use the package bodyParser, it converts the data to json format
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.json({ limit: "50mb", extended: true })); // support json encoded bodies
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true })); // support encoded bodies
 
 //Middleware - Request body content
 app.use(function(req, res, next) {

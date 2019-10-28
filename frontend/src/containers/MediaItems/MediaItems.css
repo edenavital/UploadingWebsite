@@ -11,3 +11,8 @@
   display: flex;
   list-style: none;
 }
+
+.enlargedPicture {
+  width: 50vw;
+  height: 50vh;
+}

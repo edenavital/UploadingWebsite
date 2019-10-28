@@ -4,12 +4,18 @@ import MediaItem from "../../components/MediaItem/MediaItem";
 import axios from "axios";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Modal from "../../components/UI/Modal/Modal";
+
+export const ImageManipulationContext = React.createContext({
+  enlarge: null,
+  deleteHandler: null
+});
+
 class MediaItems extends Component {
   state = {
     images: [],
     loading: true,
     isModalVisible: false,
-    imagePath: null
+    imagePath: null //current image we are messing around with
   };
 
   //When the user clicks on Media route - fetch the images from the server
@@ -46,8 +52,8 @@ class MediaItems extends Component {
   };
 
   //Manipulation of the Modal component - Closes it
-  closeModalHandler = () => {
-    this.setState({ isModalVisible: false });
+  toggleModalHandler = () => {
+    this.setState(prevState => ({ isModalVisible: !prevState.isModalVisible }));
   };
 
   render() {
@@ -57,31 +63,27 @@ class MediaItems extends Component {
     //Dynamically rendering images state, which is fetched from the server
     let media = this.state.images.map(image => (
       <li key={image.id}>
-        <MediaItem
-          id={image.id}
-          name={image.name}
-          path={image.path}
-          deleteImageHandler={this.deleteImageHandler}
-          enlargeImageHandler={this.enlargeImageHandler}
-        />
+        <ImageManipulationContext.Provider
+          value={{
+            enlarge: this.enlargeImageHandler,
+            deleteHandler: this.deleteImageHandler
+          }}
+        >
+          <MediaItem id={image.id} name={image.name} path={image.path} />
+        </ImageManipulationContext.Provider>
       </li>
     ));
     return (
       <>
-        <Modal
-          isModalVisible={this.state.isModalVisible}
-          closeModalHandler={this.closeModalHandler}
-          addClass="Image"
-        >
-          <img
-            src={this.state.imagePath}
-            alt="Media"
-            style={{
-              width: "70vw",
-              height: "85vh"
-            }}
-          />
-        </Modal>
+        {this.state.isModalVisible && (
+          <Modal toggleModal={this.toggleModalHandler} modalType="Image">
+            <img
+              src={this.state.imagePath}
+              alt="Media"
+              className={"enlargedPicture"}
+            />
+          </Modal>
+        )}
 
         <div className="MediaItems">
           <ul>{media}</ul>

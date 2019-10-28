@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Modal.css";
 import Backdrop from "../Backdrop/Backdrop";
 
@@ -8,17 +8,13 @@ import Backdrop from "../Backdrop/Backdrop";
 // isModalPositive - Indicates a Successful upload or an Error message
 // addClass - Select an extra CSS class to the Modal component (Image / Text)
 
-const Modal = props => {
+const Modal = ({ toggleModal, children, modalType }) => {
   //Animates the Modal Pop up functionality by toggling addClass which can be 'Image' or 'Text'
-  let className = props.isModalVisible ? "Modal " + props.addClass : "Modal";
 
   return (
     <>
-      <Backdrop
-        isModalVisible={props.isModalVisible}
-        closeModalHandler={props.closeModalHandler}
-      />
-      <div className={className}>{props.children}</div>
+      <Backdrop closeModalHandler={toggleModal} />
+      <div className={`${modalType}`}>{children}</div>
     </>
   );
 };

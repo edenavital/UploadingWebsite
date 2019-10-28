@@ -6,12 +6,8 @@ import EnlargedImage from "../EnlargedImage/EnlargedImage";
 
 const MediaItem = props => (
   <div className="MediaItem">
-    <DeleteButton
-      deleteImageHandler={() => props.deleteImageHandler(props.id)}
-    />
-    <EnlargedImage
-      enlargeImageHandler={() => props.enlargeImageHandler(props.path)}
-    />
+    <DeleteButton id={props.id} />
+    <EnlargedImage path={props.path} />
     <img src={props.path} alt="Media" />
     <h4>{props.name}</h4>
   </div>
