@@ -38,13 +38,25 @@ class Home extends Component {
   };
 
   //Invokes when the user clicks on the Upload button - Uploads the file to the server's database
-  fileUploadHandler = e => {
+  fileUploadHandler = async e => {
     e.preventDefault();
     console.log("fileUploadHandler invoked");
 
+    const toBase64 = file =>
+      new Promise((res, rej) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          res(reader.result);
+        };
+        reader.onerror = err => {
+          rej(err);
+        };
+      });
+
     const newImage = {
       name: this.state.selectedFile.name,
-      path: window.URL.createObjectURL(this.state.selectedFile)
+      path: await toBase64(this.state.selectedFile)
     };
 
     axios
@@ -82,17 +94,7 @@ class Home extends Component {
           closeModalHandler={this.closeModalHandler}
           addClass="Text"
         >
-          <div
-            style={{
-              backgroundColor: "white",
-              border: "1px solid #ccc",
-              boxShadow: "1px 1px 1px black",
-              padding: "16px",
-              width: "70vw"
-            }}
-          >
-            {message}
-          </div>
+          <div className="TextOfModal">{message}</div>
         </Modal>
 
         <div className="Home">
@@ -101,7 +103,6 @@ class Home extends Component {
           <input
             type="file"
             onChange={this.fileSelectedHandler}
-            accept="image/*"
             style={{ display: "none" }}
             ref={fileInput => (this.fileInput = fileInput)}
           />

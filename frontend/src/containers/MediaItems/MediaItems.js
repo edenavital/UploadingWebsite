@@ -74,12 +74,9 @@ class MediaItems extends Component {
           addClass="Image"
         >
           <img
+            className="pictureOfModal"
             src={this.state.imagePath}
             alt="Media"
-            style={{
-              width: "70vw",
-              height: "85vh"
-            }}
           />
         </Modal>
 

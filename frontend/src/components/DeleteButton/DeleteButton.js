@@ -1,7 +1,7 @@
 import React from "react";
 import "./DeleteButton.css";
 
-const deletebutton = props => {
+const DeleteButton = props => {
   return (
     <svg
       className="DeleteButton"
@@ -18,4 +18,4 @@ const deletebutton = props => {
     </svg>
   );
 };
-export default deletebutton;
+export default DeleteButton;

@@ -11,3 +11,8 @@
   display: flex;
   list-style: none;
 }
+
+.pictureOfModal {
+  width: 70vw;
+  height: 85vh;
+}

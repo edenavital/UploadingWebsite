@@ -2,10 +2,9 @@ import React from "react";
 import "./Modal.css";
 import Backdrop from "../Backdrop/Backdrop";
 
-//props: isModalVisible, closedModalHandler(), isModalPositive
+//props: isModalVisible, closedModalHandler()
 // isModalVisible - The whole Modal appears according to this boolean
 // closedModalHandler() - Changes the isModalVisible prop to false - Which hides the Modal & Backdrop
-// isModalPositive - Indicates a Successful upload or an Error message
 // addClass - Select an extra CSS class to the Modal component (Image / Text)
 
 const Modal = props => {
