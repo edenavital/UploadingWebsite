@@ -3,11 +3,13 @@ import "./MediaItems.css";
 import MediaItem from "../../components/MediaItem/MediaItem";
 import axios from "axios";
 import Spinner from "../../components/UI/Spinner/Spinner";
-
+import Modal from "../../components/UI/Modal/Modal";
 class MediaItems extends Component {
   state = {
     images: [],
-    loading: true
+    loading: true,
+    isModalVisible: false,
+    imagePath: null
   };
 
   //When the user clicks on Media route - fetch the images from the server
@@ -31,11 +33,21 @@ class MediaItems extends Component {
   };
 
   //Sends a request to the backend to delete an image with a specific id
-  deleteFileHandler = idOfImage => {
-    console.log("deleteFileHandler invoked");
+  deleteImageHandler = idOfImage => {
+    console.log("deleteImageHandler invoked");
     axios.delete("./api/media/" + idOfImage).then(() => {
       this.getImagesHandler();
     });
+  };
+  //Expand the selected image by opening it through the Modal component
+  enlargeImageHandler = pathOfImage => {
+    console.log("enlargeImageHandler invoked");
+    this.setState({ isModalVisible: true, imagePath: pathOfImage });
+  };
+
+  //Manipulation of the Modal component - Closes it
+  closeModalHandler = () => {
+    this.setState({ isModalVisible: false });
   };
 
   render() {
@@ -49,13 +61,25 @@ class MediaItems extends Component {
           id={image.id}
           name={image.name}
           path={image.path}
-          deleteImage={this.deleteFileHandler}
+          deleteImageHandler={this.deleteImageHandler}
+          enlargeImageHandler={this.enlargeImageHandler}
         />
       </li>
     ));
-
     return (
       <>
+        <Modal
+          isModalVisible={this.state.isModalVisible}
+          closeModalHandler={this.closeModalHandler}
+          addClass="Image"
+        >
+          <img
+            className="pictureOfModal"
+            src={this.state.imagePath}
+            alt="Media"
+          />
+        </Modal>
+
         <div className="MediaItems">
           <ul>{media}</ul>
         </div>

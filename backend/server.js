@@ -45,19 +45,19 @@ app.get("/api/media", (req, res) => {
   // });
 });
 //For using POST method, I have to use the package bodyParser, it converts the data to json format
-app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.json({ limit: "50mb", extended: true })); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 //Middleware - Request body content
-app.use(function(req, res, next) {
-  console.log("REQUEST body is: ", req.params);
-  next();
-});
-//Middleware - Respond body content
-app.use(function(req, res, next) {
-  console.log("RESPONSE body is: ", res.body);
-  next();
-});
+// app.use(function(req, res, next) {
+//   console.log("REQUEST body is: ", req.params);
+//   next();
+// });
+// //Middleware - Respond body content
+// app.use(function(req, res, next) {
+//   console.log("RESPONSE body is: ", res.body);
+//   next();
+// });
 
 app.post("/api/media", (req, res, next) => {
   let newImage = {
@@ -69,7 +69,9 @@ app.post("/api/media", (req, res, next) => {
     path: req.body.path
   };
   images.push(newImage);
-  console.log(newImage);
+  console.log(
+    `New Image has been appended to the server: [id: ${newImage.id}, name: ${newImage.name}`
+  );
   res.status(201).send();
 });
 

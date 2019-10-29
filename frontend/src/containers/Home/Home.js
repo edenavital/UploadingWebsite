@@ -9,7 +9,7 @@ class Home extends Component {
     selectedFile: { name: "null" },
     isUploadDisabled: true,
     isModalVisible: false,
-    isModalPositive: false
+    isModalPositive: true
   };
 
   //Returns true if a file's type is an image
@@ -31,25 +31,38 @@ class Home extends Component {
     } else {
       this.setState({
         selectedFile: e.target.files[0],
-        isUploadDisabled: false
+        isUploadDisabled: false,
+        isModalPositive: true
       });
     }
   };
 
   //Invokes when the user clicks on the Upload button - Uploads the file to the server's database
-  fileUploadHandler = e => {
+  fileUploadHandler = async e => {
     e.preventDefault();
     console.log("fileUploadHandler invoked");
 
+    const toBase64 = file =>
+      new Promise((res, rej) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          res(reader.result);
+        };
+        reader.onerror = err => {
+          rej(err);
+        };
+      });
+
     const newImage = {
       name: this.state.selectedFile.name,
-      path: window.URL.createObjectURL(this.state.selectedFile)
+      path: await toBase64(this.state.selectedFile)
     };
 
     axios
       .post("/api/media", newImage)
       .then(() => {
-        this.setState({ isModalVisible: true, isModalPositive: true });
+        this.setState({ isModalVisible: true });
       })
       .catch(err => console.log(err));
 
@@ -65,13 +78,24 @@ class Home extends Component {
   };
 
   render() {
+    //Modal's message to the user, depending on the state - isModalPositive
+    let message = this.state.isModalPositive ? (
+      <h4 style={{ color: "green" }}>
+        The image has been successfully uploaded!
+      </h4>
+    ) : (
+      <h4 style={{ color: "red" }}>The selected file is not an image!</h4>
+    );
+
     return (
       <>
         <Modal
           isModalVisible={this.state.isModalVisible}
           closeModalHandler={this.closeModalHandler}
-          isModalPositive={this.state.isModalPositive}
-        />
+          addClass="Text"
+        >
+          <div className="TextOfModal">{message}</div>
+        </Modal>
 
         <div className="Home">
           <h1>Welcome to my Uploading website</h1>
@@ -79,7 +103,6 @@ class Home extends Component {
           <input
             type="file"
             onChange={this.fileSelectedHandler}
-            accept="image/*"
             style={{ display: "none" }}
             ref={fileInput => (this.fileInput = fileInput)}
           />
