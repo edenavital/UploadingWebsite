@@ -24,10 +24,26 @@ $brownColor: #694308a4;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (max-width: 350px) and (max-height: 600px) {
+      font-size: 14px;
+    }
+
+    @media only screen and (max-width: 276px) {
+      font-size: 12px;
+    }
+
+    @media only screen and (max-width: 220px) {
+      height: 100%;
+    }
   }
 
   &-top > * {
     margin-right: 10px;
+  }
+
+  &-top > button {
+    margin: 10px;
   }
 
   &-bottom {
@@ -36,5 +52,14 @@ $brownColor: #694308a4;
 
   span {
     color: grey;
+    margin-right: 10px;
+  }
+
+  @media only screen and (max-width: 350px) and (max-height: 600px) {
+    height: 13%;
+  }
+
+  @media only screen and (max-width: 276px) {
+    height: 11%;
   }
 }

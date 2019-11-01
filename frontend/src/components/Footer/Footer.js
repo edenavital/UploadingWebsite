@@ -2,11 +2,15 @@ import React from "react";
 import "./Footer.scss";
 import Button from "../Button/Button";
 
+const navigationToLinkdin = () => {
+  window.open("https://www.linkedin.com/in/edenavital/", "_blank"); //to open new page
+};
+
 const footer = () => (
   <div className="Footer">
     <div className="Footer-top">
-      <p>Register for free </p>
-      <Button name="Click Me" />
+      <p>My Linkdin Profile</p>
+      <Button name="Click Me" click={navigationToLinkdin} />
     </div>
     <div className="Footer-bottom">
       <p>

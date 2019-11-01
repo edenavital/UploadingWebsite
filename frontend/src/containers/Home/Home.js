@@ -106,11 +106,7 @@ class Home extends Component {
             style={{ display: "none" }}
             ref={fileInput => (this.fileInput = fileInput)}
           />
-          <Button
-            name="Browse"
-            click={() => this.fileInput.click()}
-            type="button"
-          />
+          <Button name="Browse" click={() => this.fileInput.click()} />
 
           <Button
             name="Upload"

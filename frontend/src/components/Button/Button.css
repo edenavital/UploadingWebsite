@@ -11,6 +11,7 @@
   cursor: pointer;
   border: 3px solid chocolate;
   outline: none;
+  margin: 13px;
 }
 .Button:hover {
   background-color: #fff;
@@ -29,4 +30,16 @@ button:disabled:hover,
 button[disabled]:hover {
   background: grey;
   cursor: not-allowed;
+}
+@media only screen and (max-width: 350px) and (max-height: 600px) {
+  .Button {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 276px) {
+  .Button {
+    font-size: 10px;
+    padding: 5px !important;
+  }
 }
