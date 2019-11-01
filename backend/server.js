@@ -3,19 +3,19 @@ const app = express();
 const port = 5000;
 const bodyParser = require("body-parser");
 
-// Initial "database" - will be deleted
-// Tasks: Add a Spinner when requesting data from the server
+// Tasks: Add a Spinner when requesting data from the server - V
 //       Add a delete button on each of the pictures - V
 //       Add a pop up component for errors - V
-//       Add a progress bar to the Home component / Indication about Uploaded Files - Success message
+//       Add a progress bar to the Home component / Indication about Uploaded Files - Success message - V
 //       Connect the server to MongoDB
 //       Edit the README.md file in github - V
 //       Add an if statement - cannot upload anything that is not an image. (only jpg, png ...) - V
 //       Make the Upload button disabled when nothing has been selected - V
 //       Trim the file extensions - V
-//       Add a Modal component for an Expand component - the Picture will open in a pop up window - enlarged picture
+//       Add a Modal component for an Expand component - the Picture will open in a pop up window - enlarged picture - V
 //       Implement Routes - V
 
+// Initial "database" - will be deleted after connecting to MongoDB
 const images = [
   {
     id: 0,
@@ -33,9 +33,7 @@ const images = [
 //In order to fake a long request - using in order to test Spinner
 const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
 
-// the api route handler
-
-//GET REQUEST using fake media "data base"
+//Get request - Using fake images "data base"
 app.get("/api/media", (req, res) => {
   // res.json - receive an object or array, and converts it to JSON before sending it
   res.json(images);
@@ -44,21 +42,11 @@ app.get("/api/media", (req, res) => {
   //   res.status(200).send(res.json(images).status(200));
   // });
 });
-//For using POST method, I have to use the package bodyParser, it converts the data to json format
+//For using POST method, I have to use the package bodyParser, it converts the data to JSON format
 app.use(bodyParser.json({ limit: "50mb", extended: true })); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-//Middleware - Request body content
-// app.use(function(req, res, next) {
-//   console.log("REQUEST body is: ", req.params);
-//   next();
-// });
-// //Middleware - Respond body content
-// app.use(function(req, res, next) {
-//   console.log("RESPONSE body is: ", res.body);
-//   next();
-// });
-
+//Post request - Generating id by using current Date, removing extension of each posted image
 app.post("/api/media", (req, res, next) => {
   let newImage = {
     id: Date.now(),
@@ -75,6 +63,7 @@ app.post("/api/media", (req, res, next) => {
   res.status(201).send();
 });
 
+//Get request - Getting a specific image using the id of it - testing purposes only
 app.get(
   "/api/media/:id",
   (req, res, next) => {

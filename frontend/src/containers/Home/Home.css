@@ -8,14 +8,22 @@
   padding: 10px;
 }
 
-.Home button {
-  margin-right: 15px;
-}
-
 .TextOfModal {
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px black;
   padding: 16px;
   width: 70vw;
+}
+
+@media only screen and (max-width: 350px) and (max-height: 600px) {
+  .Home {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 276px) {
+  .Home {
+    font-size: 9px;
+  }
 }
