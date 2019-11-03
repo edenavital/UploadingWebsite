@@ -92,7 +92,7 @@ class Home extends Component {
         <Modal
           isModalVisible={this.state.isModalVisible}
           closeModalHandler={this.closeModalHandler}
-          addClass="Text"
+          modalType="Modal-text"
         >
           <div className="TextOfModal">{message}</div>
         </Modal>

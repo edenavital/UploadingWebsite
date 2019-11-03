@@ -1,21 +1,91 @@
-.Modal {
+/* appear - on page load */
+
+.Modal-text-enter {
   position: fixed;
-  z-index: -1;
-  left: 50%;
-  top: 50%;
-  box-sizing: border-box;
-  transition: all 0.5s ease-out;
-  opacity: 0;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(15vw, -15vh);
+  transition: all 0.75s ease;
+}
+
+.Modal-text-enter-active {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(15vw, 40vh);
+}
+
+.Modal-text-enter-done {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(15vw, 40vh);
+}
+
+.Modal-text-exit {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(15vw, -15vh);
+  transition: all 0.75s ease;
+}
+
+.Modal-text-exit-active {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(15vw, -40vh);
+}
+
+.Modal-text-exit-done {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(15vw, -40vh);
+}
+
+/**/
+
+.Modal-img-enter {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(-50%, -100vh);
+  transition: all 0.75s ease;
+}
+
+.Modal-img-enter-active {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(-50%, 4vh);
+}
+
+.Modal-img-enter-done {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(-50%, 4vh);
+}
+
+.Modal-img-exit {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
+  transform: translate(-50%, 4vh);
+  transition: all 0.75s ease;
+}
+
+.Modal-img-exit-active {
+  position: fixed;
+  z-index: 500;
+  opacity: 1;
   transform: translate(-50%, -100vh);
 }
 
-.Text {
-  transform: translate(-50%, -20vh);
-  opacity: 1;
+.Modal-img-exit-done {
+  position: fixed;
   z-index: 500;
-}
-.Image {
-  transform: translate(-50%, -50%);
   opacity: 1;
-  z-index: 500;
+  transform: translate(-50%, -100vh);
 }

@@ -71,7 +71,7 @@ class MediaItems extends Component {
         <Modal
           isModalVisible={this.state.isModalVisible}
           closeModalHandler={this.closeModalHandler}
-          addClass="Image"
+          modalType="Modal-img"
         >
           <img
             className="pictureOfModal"
