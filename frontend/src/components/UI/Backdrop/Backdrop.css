@@ -1,3 +1,4 @@
+/*Backdrop*/
 .Backdrop {
   width: 100%;
   height: 100%;
@@ -6,4 +7,25 @@
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+.Backdrop-enter {
+  opacity: 0;
+  transition: all 0.75s ease;
+}
+
+.Backdrop-enter-active,
+.Backdrop-enter-done {
+  opacity: 1;
+}
+
+.Backdrop-exit {
+  opacity: 1;
+  transition: all 0.75s ease;
+}
+
+.Backdrop-exit-active,
+.Backdrop-exit-done {
+  opacity: 0;
 }
