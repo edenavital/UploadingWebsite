@@ -1,21 +1,56 @@
 .Modal {
   position: fixed;
-  z-index: -1;
-  left: 50%;
-  top: 50%;
-  box-sizing: border-box;
-  transition: all 0.5s ease-out;
-  opacity: 0;
-  transform: translate(-50%, -100vh);
+  z-index: 500;
 }
 
-.Text {
-  transform: translate(-50%, -20vh);
+/*Modal-text*/
+
+.text-enter {
   opacity: 1;
-  z-index: 500;
+  transform: translate(15vw, -15vh);
+  transition: all 0.75s ease;
 }
-.Image {
-  transform: translate(-50%, -50%);
+
+.text-enter-active,
+.text-enter-done {
   opacity: 1;
-  z-index: 500;
+  transform: translate(15vw, 40vh);
+}
+
+.text-exit {
+  opacity: 1;
+  transform: translate(15vw, -15vh);
+  transition: all 0.75s ease;
+}
+
+.text-exit-active,
+.text-exit-done {
+  opacity: 1;
+  transform: translate(15vw, -40vh);
+}
+
+/*Modal-img*/
+
+.img-enter {
+  opacity: 1;
+  transform: translate(-50%, -100vh);
+  transition: all 0.75s ease;
+}
+
+.img-enter-active,
+.img-enter-done {
+  opacity: 1;
+  transform: translate(-50%, 4vh);
+}
+
+.img-exit {
+  opacity: 1;
+  transform: translate(-50%, 4vh);
+  transition: all 0.75s ease;
+}
+
+.img-exit-active,
+.img-exit-done {
+  opacity: 1;
+  transform: translate(-50%, -100vh);
 }
