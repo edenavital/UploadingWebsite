@@ -97,8 +97,6 @@ app.delete("/api/media/:id", (req, res, next) => {
 
 app.use(express.static("client/build"));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-});
+app.use("/", express.static(path.join(__dirname, "/client/build")));
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
