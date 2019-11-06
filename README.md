@@ -10,7 +10,7 @@ In the future, they will be stored through MongoDB.
 
 ### Released Features :
   - Upload images directly to the website's server.
-  - Communicatation to the backend with provided status codes.
+  - Communication to the backend with provided status codes.
   - Delete component which deletes an uploaded image.
   - Spinner component. (Appears when fetching data from the server).
   - An indication that a file has been selected and checking if the file extension is supported.
