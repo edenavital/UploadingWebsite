@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = 5000;
 const bodyParser = require("body-parser");
-
+const cors = require("cors");
 // Tasks: Add a Spinner when requesting data from the server - V
 //       Add a delete button on each of the pictures - V
 //       Add a pop up component for errors - V
@@ -32,6 +32,8 @@ const images = [
 ];
 //In order to fake a long request - using in order to test Spinner
 const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
+
+app.use(cors());
 
 //Get request - Using fake images "data base"
 app.get("/api/media", (req, res) => {
@@ -93,4 +95,13 @@ app.delete("/api/media/:id", (req, res, next) => {
   res.status(204).send();
 });
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 app.listen(port, () => console.log(`Server started on port ${port}`));
+const PORT = process.env.PORT || 5000;
