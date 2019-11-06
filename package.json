@@ -8,7 +8,8 @@
     "server": "node server.js",
     "client": "cd frontend && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm install client && npm run build"
+    "heroku-postbuild": "npm install client && npm run build",
+    "install": "cd frontend && npm install && npm run build && cd .."
   },
   "author": "",
   "license": "ISC",
