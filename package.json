@@ -4,12 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "node server.js",
+    "start": "node index.js",
+    "server": "node index.js",
     "client": "cd frontend && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm install client && npm run build",
-    "install": "cd frontend && npm install && npm run build && cd .."
+    "heroku-postbuild": "npm install client && npm run build"
   },
   "author": "",
   "license": "ISC",
