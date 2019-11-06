@@ -21,8 +21,7 @@ In the future, they will be stored through MongoDB.
   - The website is responsive, using variety of resolutions.
   
 ### Features in development :
-  - Add a Database. (MongoDB
-  - Add a progress bar to the Home component.
+  - Add a Database. (MongoDB)
   
 
 
