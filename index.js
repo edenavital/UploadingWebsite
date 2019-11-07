@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const bodyParser = require("body-parser");
+const path = require("path");
 const cors = require("cors");
 // Tasks: Add a Spinner when requesting data from the server - V
 //       Add a delete button on each of the pictures - V
