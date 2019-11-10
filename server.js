@@ -94,7 +94,6 @@ app.delete("/api/media/:id", (req, res, next) => {
   res.status(204).send();
 });
 
-<<<<<<< HEAD:server.js
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));
 
@@ -105,12 +104,6 @@ if (process.env.NODE_ENV === "production") {
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/frontend/public/index.html"));
-=======
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "../frontend/build/index.html"));
->>>>>>> cebacb1b8b7e722968a37fb34450450a3113581b:backend/server.js
 });
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
