@@ -1,0 +1,45 @@
+.Button {
+  font-size: 15px;
+  display: inline-block;
+  padding: 0.3em 1.2em !important;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: #fff;
+  background-color: #694308;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 3px solid chocolate;
+  outline: none;
+  margin: 13px;
+}
+.Button:hover {
+  background-color: #fff;
+  color: black;
+  border: 3px solid black;
+}
+
+button:disabled,
+button[disabled] {
+  background: grey;
+  border: 3px solid black;
+  cursor: not-allowed;
+}
+
+button:disabled:hover,
+button[disabled]:hover {
+  background: grey;
+  cursor: not-allowed;
+}
+@media only screen and (max-width: 350px) and (max-height: 600px) {
+  .Button {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 276px) {
+  .Button {
+    font-size: 10px;
+    padding: 5px !important;
+  }
+}

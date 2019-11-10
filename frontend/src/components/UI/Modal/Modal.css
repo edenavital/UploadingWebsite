@@ -1,0 +1,56 @@
+.Modal {
+  position: fixed;
+  z-index: 500;
+}
+
+/*Modal-text*/
+
+.text-enter {
+  opacity: 1;
+  transform: translate(15vw, -15vh);
+  transition: all 0.75s ease;
+}
+
+.text-enter-active,
+.text-enter-done {
+  opacity: 1;
+  transform: translate(15vw, 40vh);
+}
+
+.text-exit {
+  opacity: 1;
+  transform: translate(15vw, -15vh);
+  transition: all 0.75s ease;
+}
+
+.text-exit-active,
+.text-exit-done {
+  opacity: 1;
+  transform: translate(15vw, -40vh);
+}
+
+/*Modal-img*/
+
+.img-enter {
+  opacity: 1;
+  transform: translate(-50%, -100vh);
+  transition: all 0.75s ease;
+}
+
+.img-enter-active,
+.img-enter-done {
+  opacity: 1;
+  transform: translate(-50%, 4vh);
+}
+
+.img-exit {
+  opacity: 1;
+  transform: translate(-50%, 4vh);
+  transition: all 0.75s ease;
+}
+
+.img-exit-active,
+.img-exit-done {
+  opacity: 1;
+  transform: translate(-50%, -100vh);
+}

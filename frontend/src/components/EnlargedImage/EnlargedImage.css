@@ -1,0 +1,7 @@
+.EnlargedImage {
+  position: absolute;
+  left: 2%;
+  top: 2%;
+
+  cursor: pointer;
+}
