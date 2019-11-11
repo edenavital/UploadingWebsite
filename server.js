@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
+const path = require("path");
 const bodyParser = require("body-parser");
 
 // Tasks: Add a Spinner when requesting data from the server - V
@@ -91,6 +92,18 @@ app.delete("/api/media/:id", (req, res, next) => {
   findIndexOfImages(req.params.id);
 
   res.status(204).send();
+});
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
+  });
+}
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/frontend/public/index.html"));
 });
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
