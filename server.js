@@ -37,8 +37,8 @@ const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms));
 //Get request - Using fake images "data base"
 app.get("/api/media", (req, res) => {
   // res.json - receive an object or array, and converts it to JSON before sending it
-  res.json(images);
-  res.status(200);
+  res.status(200).send(images);
+
   // sleep(3000).then(() => {
   //   res.status(200).send(res.json(images).status(200));
   // });
@@ -65,17 +65,10 @@ app.post("/api/media", (req, res, next) => {
 });
 
 //Get request - Getting a specific image using the id of it - testing purposes only
-app.get(
-  "/api/media/:id",
-  (req, res, next) => {
-    res.json(images[req.params.id]);
-    next();
-  },
-  (req, res, next) => {
-    console.log("PASSED TO THE SIBLING MIDDLEWARE");
-    next();
-  }
-);
+app.get("/api/media/:id", (req, res, next) => {
+  res.json(images[req.params.id]);
+  next();
+});
 
 // Find the index of the object that has the specified id
 const findIndexOfImages = deleteId => {

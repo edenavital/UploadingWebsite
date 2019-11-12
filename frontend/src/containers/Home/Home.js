@@ -9,13 +9,18 @@ class Home extends Component {
     selectedFile: { name: "null" },
     isUploadDisabled: true,
     isModalVisible: false,
-    isModalPositive: true
+    modalTextType: ""
   };
 
   //Returns true if a file's type is an image
   isFileImage = file => {
     return file && file["type"].split("/")[0] === "image";
   };
+
+  //Returns true if a file's size is less then 3mb
+  isFileSizeLegit = file => {
+    return file.size > 3000000;
+  }; //3124201
 
   //Invokes when the user picks a file by the Browse button - Manipulates the states according to the selected file
   fileSelectedHandler = e => {
@@ -26,13 +31,20 @@ class Home extends Component {
         selectedFile: null,
         isUploadDisabled: true,
         isModalVisible: true,
-        isModalPositive: false
+        modalTextType: "type"
+      });
+    } else if (this.isFileSizeLegit(e.target.files[0])) {
+      this.setState({
+        selectedFile: null,
+        isUploadDisabled: true,
+        isModalVisible: true,
+        modalTextType: "size"
       });
     } else {
       this.setState({
         selectedFile: e.target.files[0],
         isUploadDisabled: false,
-        isModalPositive: true
+        modalTextType: "success"
       });
     }
   };
@@ -78,14 +90,30 @@ class Home extends Component {
   };
 
   render() {
-    //Modal's message to the user, depending on the state - isModalPositive
-    let message = this.state.isModalPositive ? (
-      <h4 style={{ color: "green" }}>
-        The image has been successfully uploaded!
-      </h4>
-    ) : (
-      <h4 style={{ color: "red" }}>The selected file is not an image!</h4>
-    );
+    //Modal's message to the user, depending on the state - modalTextType - size, type, success
+    let message = "";
+    switch (this.state.modalTextType) {
+      case "type": {
+        message = (
+          <h4 style={{ color: "red" }}>The selected file is not an image!</h4>
+        );
+        break;
+      }
+      case "size": {
+        message = (
+          <h4 style={{ color: "red" }}>
+            The selected file's size is more than 3MB!
+          </h4>
+        );
+        break;
+      }
+      default:
+        message = (
+          <h4 style={{ color: "green" }}>
+            The image has been successfully uploaded!
+          </h4>
+        );
+    }
 
     return (
       <>

@@ -35,7 +35,14 @@ class MediaItems extends Component {
   //Sends a request to the backend to delete an image with a specific id
   deleteImageHandler = idOfImage => {
     console.log("deleteImageHandler invoked");
-    axios.delete("./api/media/" + idOfImage).then(() => {
+    // axios.delete("/api/media/" + idOfImage).then(() => {
+    //   this.getImagesHandler();
+    // });
+
+    axios({
+      method: "delete",
+      url: "/api/media/" + idOfImage
+    }).then(() => {
       this.getImagesHandler();
     });
   };

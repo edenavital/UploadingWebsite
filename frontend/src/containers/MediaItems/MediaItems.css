@@ -21,23 +21,42 @@
   height: 85vh;
 }
 
-@media only screen and (max-width: 405px) and (max-height: 600px) {
+@media only screen and (min-height: 0px) and (max-height: 500px) {
   .pictureOfModal {
     width: 92vw;
     height: 60vh;
+    position: absolute;
+    left: 50%;
+    top: 25%;
   }
 }
 
-@media only screen and (max-width: 330px) and (max-height: 500px) {
-  .pictureOfModal {
-    width: 85vw;
-    height: 50vh;
-  }
-}
-
-@media only screen and (max-width: 276px) and (max-height: 400px) {
+@media only screen and (min-width: 0px) and (max-width: 430px) {
   .pictureOfModal {
     width: 78vw;
     height: 40vh;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+  }
+}
+
+@media only screen and (min-width: 430px) and (max-width: 500px) {
+  .pictureOfModal {
+    width: 78vw;
+    height: 55vh;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 1000px) {
+  .pictureOfModal {
+    width: 78vw;
+    height: 70vh;
+    position: absolute;
+    left: 50%;
+    top: 10%;
   }
 }
