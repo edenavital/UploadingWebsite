@@ -3,13 +3,14 @@ import "./Home.css";
 import Button from "../../components/Button/Button";
 import axios from "axios";
 import Modal from "../../components/UI/Modal/Modal";
-
+import Spinner from "../../components/UI/Spinner/Spinner";
 class Home extends Component {
   state = {
     selectedFile: { name: "null" },
     isUploadDisabled: true,
     isModalVisible: false,
-    modalTextType: ""
+    modalTextType: "",
+    loading: false
   };
 
   //Returns true if a file's type is an image
@@ -26,6 +27,7 @@ class Home extends Component {
   fileSelectedHandler = e => {
     console.log("fileSelectedHandler invoked");
     console.log("The selected file is: ", e.target.files[0]);
+    //If the file is NOT an image...
     if (!this.isFileImage(e.target.files[0])) {
       this.setState({
         selectedFile: null,
@@ -33,6 +35,7 @@ class Home extends Component {
         isModalVisible: true,
         modalTextType: "type"
       });
+      //If the file's size is greater than 3MB...
     } else if (this.isFileSizeLegit(e.target.files[0])) {
       this.setState({
         selectedFile: null,
@@ -40,6 +43,7 @@ class Home extends Component {
         isModalVisible: true,
         modalTextType: "size"
       });
+      //If everything is fine than...
     } else {
       this.setState({
         selectedFile: e.target.files[0],
@@ -49,10 +53,12 @@ class Home extends Component {
     }
   };
 
-  //Invokes when the user clicks on the Upload button - Uploads the file to the server's database
+  //Invokes when the user clicks on the Upload button - Uploads the image to the server's 'database'
   fileUploadHandler = async e => {
-    e.preventDefault();
     console.log("fileUploadHandler invoked");
+    e.preventDefault();
+
+    this.setState({ loading: true });
 
     const toBase64 = file =>
       new Promise((res, rej) => {
@@ -74,9 +80,12 @@ class Home extends Component {
     axios
       .post("/api/media", newImage)
       .then(() => {
-        this.setState({ isModalVisible: true });
+        this.setState({ isModalVisible: true, loading: false });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        this.setState({ loading: false });
+      });
 
     this.setState(prevState => ({
       selectedFile: null,
@@ -114,6 +123,8 @@ class Home extends Component {
           </h4>
         );
     }
+    //Shows a Spinner depending on the loading state, appears when posting data to the server
+    let spinner = this.state.loading ? <Spinner /> : null;
 
     return (
       <>
@@ -124,6 +135,8 @@ class Home extends Component {
         >
           <div className="TextOfModal">{message}</div>
         </Modal>
+
+        {spinner}
 
         <div className="Home">
           <h1>Welcome to my Uploading website</h1>

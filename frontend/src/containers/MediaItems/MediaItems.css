@@ -33,27 +33,27 @@
 
 @media only screen and (min-width: 0px) and (max-width: 430px) {
   .pictureOfModal {
-    width: 78vw;
-    height: 40vh;
+    width: 80vw;
+    height: 50vh;
     position: absolute;
     left: 50%;
     top: 20%;
   }
 }
 
-@media only screen and (min-width: 430px) and (max-width: 500px) {
+/* @media only screen and (min-width: 430px) and (max-width: 500px) {
   .pictureOfModal {
-    width: 78vw;
+    width: 80vw;
     height: 55vh;
     position: absolute;
     left: 50%;
     top: 15%;
   }
-}
+} */
 
-@media only screen and (min-width: 500px) and (max-width: 1000px) {
+@media only screen and (min-width: 430px) and (max-width: 1000px) {
   .pictureOfModal {
-    width: 78vw;
+    width: 80vw;
     height: 70vh;
     position: absolute;
     left: 50%;
