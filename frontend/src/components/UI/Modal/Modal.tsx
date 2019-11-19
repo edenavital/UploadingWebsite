@@ -7,27 +7,38 @@ import { CSSTransition } from "react-transition-group";
 // closedModalHandler() - Changes the isModalVisible prop to false - Which hides the Modal & Backdrop
 // modalType - Select the Modal animation type (text / img)
 
-const Modal = props => {
+interface Props {
+  isModalVisible: boolean;
+  closeModalHandler: () => void;
+  modalType: string;
+}
+
+const Modal: React.FC<Props> = ({
+  modalType,
+  isModalVisible,
+  closeModalHandler,
+  children
+}) => {
   return (
     <>
       <CSSTransition
-        in={props.isModalVisible}
+        in={isModalVisible}
         classNames={"Backdrop"}
         timeout={750}
         unmountOnExit
         appear
       >
-        <Backdrop closeModalHandler={props.closeModalHandler} />
+        <Backdrop closeModalHandler={closeModalHandler} />
       </CSSTransition>
 
       <CSSTransition
-        in={props.isModalVisible}
-        classNames={"Modal " + props.modalType}
+        in={isModalVisible}
+        classNames={"Modal " + modalType}
         timeout={750}
         unmountOnExit
         appear
       >
-        {props.children}
+        {children}
       </CSSTransition>
     </>
   );
