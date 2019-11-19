@@ -1,12 +1,17 @@
 import React from "react";
 import "./EnlargedImage.css";
-const EnlargedImage = props => (
+
+interface Props {
+  enlargeImageHandler: () => void;
+}
+
+const EnlargedImage: React.FC<Props> = ({ enlargeImageHandler }) => (
   <svg
     className="EnlargedImage"
     width="17px"
     height="17px"
     viewBox="0 0 215.35 215.35"
-    onClick={props.enlargeImageHandler}
+    onClick={enlargeImageHandler}
   >
     <g>
       <path

@@ -1,12 +1,24 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import "./Home.css";
 import Button from "../../components/Button/Button";
 import axios from "axios";
 import Modal from "../../components/UI/Modal/Modal";
 import Spinner from "../../components/UI/Spinner/Spinner";
-class Home extends Component {
+
+interface State {
+  selectedFile: any;
+  isUploadDisabled: boolean;
+  isModalVisible: boolean;
+  modalTextType: string;
+  loading: boolean;
+}
+
+//DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+class Home extends Component<{}, State> {
+  private fileInput = createRef<HTMLInputElement>();
+
   state = {
-    selectedFile: { name: "null" },
+    selectedFile: { name: "file" },
     isUploadDisabled: true,
     isModalVisible: false,
     modalTextType: "",
@@ -14,21 +26,23 @@ class Home extends Component {
   };
 
   //Returns true if a file's type is an image
-  isFileImage = file => {
+  isFileImage = (file: File) => {
     return file && file["type"].split("/")[0] === "image";
   };
 
   //Returns true if a file's size is less then 3mb
-  isFileSizeLegit = file => {
+  isFileSizeLegit = (file: File) => {
     return file.size > 3000000;
   }; //3124201
 
   //Invokes when the user picks a file by the Browse button - Manipulates the states according to the selected file
-  fileSelectedHandler = e => {
+  fileSelectedHandler = (e: any): void => {
     console.log("fileSelectedHandler invoked");
-    console.log("The selected file is: ", e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    console.log("The selected file is: ", selectedFile);
+
     //If the file is NOT an image...
-    if (!this.isFileImage(e.target.files[0])) {
+    if (!this.isFileImage(selectedFile)) {
       this.setState({
         selectedFile: null,
         isUploadDisabled: true,
@@ -36,7 +50,7 @@ class Home extends Component {
         modalTextType: "type"
       });
       //If the file's size is greater than 3MB...
-    } else if (this.isFileSizeLegit(e.target.files[0])) {
+    } else if (this.isFileSizeLegit(selectedFile)) {
       this.setState({
         selectedFile: null,
         isUploadDisabled: true,
@@ -46,7 +60,7 @@ class Home extends Component {
       //If everything is fine than...
     } else {
       this.setState({
-        selectedFile: e.target.files[0],
+        selectedFile: selectedFile,
         isUploadDisabled: false,
         modalTextType: "success"
       });
@@ -54,13 +68,13 @@ class Home extends Component {
   };
 
   //Invokes when the user clicks on the Upload button - Uploads the image to the server's 'database'
-  fileUploadHandler = async e => {
+  fileUploadHandler = async (e: React.SyntheticEvent) => {
     console.log("fileUploadHandler invoked");
     e.preventDefault();
 
     this.setState({ loading: true });
 
-    const toBase64 = file =>
+    const toBase64 = (file: any) =>
       new Promise((res, rej) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -100,7 +114,7 @@ class Home extends Component {
 
   render() {
     //Modal's message to the user, depending on the state - modalTextType - size, type, success
-    let message = "";
+    let message: React.ReactNode = "test";
     switch (this.state.modalTextType) {
       case "type": {
         message = (
@@ -123,6 +137,7 @@ class Home extends Component {
           </h4>
         );
     }
+
     //Shows a Spinner depending on the loading state, appears when posting data to the server
     let spinner = this.state.loading ? <Spinner /> : null;
 
@@ -145,9 +160,17 @@ class Home extends Component {
             type="file"
             onChange={this.fileSelectedHandler}
             style={{ display: "none" }}
-            ref={fileInput => (this.fileInput = fileInput)}
+            ref={this.fileInput}
           />
-          <Button name="Browse" click={() => this.fileInput.click()} />
+          <Button
+            name="Browse"
+            click={() => {
+              const node = this.fileInput.current;
+              if (node) {
+                node.click();
+              }
+            }}
+          />
 
           <Button
             name="Upload"

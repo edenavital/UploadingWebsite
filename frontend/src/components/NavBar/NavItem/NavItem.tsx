@@ -2,9 +2,13 @@ import React from "react";
 import "./NavItem.css";
 import { NavLink } from "react-router-dom";
 
-const NavItem = props => (
+interface Props {
+  link: string;
+}
+
+const NavItem: React.FC<Props> = ({ link, children }) => (
   <li className="NavItem">
-    <NavLink to={props.link}>{props.children}</NavLink>
+    <NavLink to={link}>{children}</NavLink>
   </li>
 );
 
