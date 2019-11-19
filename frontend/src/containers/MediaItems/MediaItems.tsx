@@ -4,12 +4,26 @@ import MediaItem from "../../components/MediaItem/MediaItem";
 import axios from "axios";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Modal from "../../components/UI/Modal/Modal";
-class MediaItems extends Component {
+
+interface State {
+  images: object[] | null;
+  loading: boolean;
+  isModalVisible: boolean;
+  imagePath: string;
+}
+
+interface imageObject {
+  id: number;
+  name: string;
+  path: string;
+}
+
+class MediaItems extends Component<{}, State> {
   state = {
     images: [],
     loading: true,
     isModalVisible: false,
-    imagePath: null
+    imagePath: ""
   };
 
   //When the user clicks on Media route - fetch the images from the server
@@ -33,7 +47,7 @@ class MediaItems extends Component {
   };
 
   //Sends a request to the backend to delete an image with a specific id
-  deleteImageHandler = idOfImage => {
+  deleteImageHandler = (idOfImage: number) => {
     console.log("deleteImageHandler invoked");
     // axios.delete("/api/media/" + idOfImage).then(() => {
     //   this.getImagesHandler();
@@ -46,8 +60,9 @@ class MediaItems extends Component {
       this.getImagesHandler();
     });
   };
+
   //Expand the selected image by opening it through the Modal component
-  enlargeImageHandler = pathOfImage => {
+  enlargeImageHandler = (pathOfImage: string) => {
     console.log("enlargeImageHandler invoked");
     this.setState({ isModalVisible: true, imagePath: pathOfImage });
   };
@@ -62,7 +77,7 @@ class MediaItems extends Component {
     if (this.state.loading) return <Spinner />;
 
     //Dynamically rendering images state, which is fetched from the server
-    let media = this.state.images.map(image => (
+    let media = this.state.images.map((image: imageObject) => (
       <li key={image.id}>
         <MediaItem
           id={image.id}
