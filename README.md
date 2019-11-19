@@ -17,15 +17,11 @@ In the future, they will be stored through MongoDB.
 - An indication that a file has been selected and checking if the file extension is supported.
 - Using Routes in order to navigate between Home, MediaItems components.
 - Backdrop & Modal component which indicates an Error / Successful upload.
-- Modal component.
 - EnlargedImage component which displays a selected image on larger scale.
 - The website is responsive, using variety of resolutions.
+- All the project Props & States are managed by TypeScript
 
-### Features in development :
-
-- Add a Database. (MongoDB)
-
-### How to launch the website
+### How to launch the website (development mode)
 
 In order to run the website, you will need to Install the required dependencies.
 Clone or download the project, enter the terminal and write the following scripts:
