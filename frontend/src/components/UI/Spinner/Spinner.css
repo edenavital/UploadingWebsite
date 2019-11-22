@@ -95,11 +95,7 @@
     width: 64px;
     height: 64px;
     left: 50%;
-<<<<<<< HEAD
     top: 73%;
-=======
-    top: 60%;
->>>>>>> 29343559544f34dc5e5ab6ebe6f5ff016b0ca516
     transform: translate(-50%, -50%);
   }
 }
