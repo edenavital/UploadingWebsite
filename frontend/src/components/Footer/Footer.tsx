@@ -3,10 +3,10 @@ import "./Footer.scss";
 import Button from "../Button/Button";
 
 const navigationToLinkdin = () => {
-  window.open("https://www.linkedin.com/in/edenavital/", "_blank"); //to open new page
+  window.open("https://www.linkedin.com/in/edenavital/", "_blank");
 };
 
-const footer = () => (
+const Footer = () => (
   <div className="Footer">
     <div className="Footer-top">
       <p>My Linkdin Profile</p>
@@ -20,4 +20,4 @@ const footer = () => (
   </div>
 );
 
-export default footer;
+export default Footer;

@@ -26,7 +26,7 @@ class MediaItems extends Component<{}, State> {
     imagePath: ""
   };
 
-  //When the user clicks on Media route - fetch the images from the server
+  //When the user clicks on Media route - Immediately fetch the images from the server
   componentDidMount() {
     this.getImagesHandler();
   }
@@ -73,8 +73,8 @@ class MediaItems extends Component<{}, State> {
   };
 
   render() {
-    //Showing a Spinner while fetching from the server
-    if (this.state.loading) return <Spinner />;
+    //Showing a Spinner while fetching images (data) from the server
+    let spinner = this.state.loading ? <Spinner /> : null;
 
     //Dynamically rendering images state, which is fetched from the server
     let media = this.state.images.map((image: imageObject) => (
@@ -90,6 +90,8 @@ class MediaItems extends Component<{}, State> {
     ));
     return (
       <>
+        {spinner}
+
         <Modal
           isModalVisible={this.state.isModalVisible}
           closeModalHandler={this.closeModalHandler}

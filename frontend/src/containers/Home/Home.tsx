@@ -13,12 +13,11 @@ interface State {
   loading: boolean;
 }
 
-//DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 class Home extends Component<{}, State> {
   private fileInput = createRef<HTMLInputElement>();
 
   state = {
-    selectedFile: { name: "file" },
+    selectedFile: { name: "Initial file" },
     isUploadDisabled: true,
     isModalVisible: false,
     modalTextType: "",
@@ -26,16 +25,16 @@ class Home extends Component<{}, State> {
   };
 
   //Returns true if a file's type is an image
-  isFileImage = (file: File) => {
+  isFileImage = (file: File): boolean => {
     return file && file["type"].split("/")[0] === "image";
   };
 
-  //Returns true if a file's size is less then 3mb
-  isFileSizeLegit = (file: File) => {
+  //Returns true if a file's size is bigger than 3mb
+  isFileSizeLegit = (file: File): boolean => {
     return file.size > 3000000;
-  }; //3124201
+  };
 
-  //Invokes when the user picks a file by the Browse button - Manipulates the states according to the selected file
+  //Invokes when the user selects a file by the Browse button - Manipulates the states according to the selected file
   fileSelectedHandler = (e: any): void => {
     console.log("fileSelectedHandler invoked");
     const selectedFile = e.target.files[0];
@@ -57,7 +56,7 @@ class Home extends Component<{}, State> {
         isModalVisible: true,
         modalTextType: "size"
       });
-      //If everything is fine than...
+      //If the file can be uploaded than
     } else {
       this.setState({
         selectedFile: selectedFile,
@@ -67,8 +66,8 @@ class Home extends Component<{}, State> {
     }
   };
 
-  //Invokes when the user clicks on the Upload button - Uploads the image to the server's 'database'
-  fileUploadHandler = async (e: React.SyntheticEvent) => {
+  //Invokes when the user clicks on the Upload button - Uploads the image to the server's database
+  fileUploadHandler = async (e: React.SyntheticEvent): Promise<void> => {
     console.log("fileUploadHandler invoked");
     e.preventDefault();
 
@@ -113,8 +112,11 @@ class Home extends Component<{}, State> {
   };
 
   render() {
+    //Shows a Spinner depending on the loading state, appears when posting data to the server
+    let spinner = this.state.loading ? <Spinner /> : null;
+
     //Modal's message to the user, depending on the state - modalTextType - size, type, success
-    let message: React.ReactNode = "test";
+    let message: React.ReactNode = "";
     switch (this.state.modalTextType) {
       case "type": {
         message = (
@@ -138,11 +140,10 @@ class Home extends Component<{}, State> {
         );
     }
 
-    //Shows a Spinner depending on the loading state, appears when posting data to the server
-    let spinner = this.state.loading ? <Spinner /> : null;
-
     return (
       <>
+        {spinner}
+
         <Modal
           isModalVisible={this.state.isModalVisible}
           closeModalHandler={this.closeModalHandler}
@@ -150,8 +151,6 @@ class Home extends Component<{}, State> {
         >
           <div className="TextOfModal">{message}</div>
         </Modal>
-
-        {spinner}
 
         <div className="Home">
           <h1>Welcome to my Uploading website</h1>
