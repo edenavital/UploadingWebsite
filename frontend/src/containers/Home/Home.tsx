@@ -31,7 +31,7 @@ class Home extends Component<{}, State> {
 
   //Returns true if a file's size is bigger than 3mb
   isFileSizeLegit = (file: File): boolean => {
-    return file.size > 3000000;
+    return file.size < 3000000;
   };
 
   //Invokes when the user selects a file by the Browse button - Manipulates the states according to the selected file
@@ -49,7 +49,7 @@ class Home extends Component<{}, State> {
         modalTextType: "type"
       });
       //If the file's size is greater than 3MB...
-    } else if (this.isFileSizeLegit(selectedFile)) {
+    } else if (!this.isFileSizeLegit(selectedFile)) {
       this.setState({
         selectedFile: null,
         isUploadDisabled: true,

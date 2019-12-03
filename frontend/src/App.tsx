@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home/Home";
 import MediaItems from "./containers/MediaItems/MediaItems";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
       <Layout>
