@@ -3,7 +3,7 @@
   height: 70%;
   position: absolute;
   left: 50%;
-  top: 47%;
+  top: 50%;
   transform: translate(-50%, -50%);
   overflow-y: auto;
 }
@@ -38,6 +38,7 @@
     left: 50%;
     top: 20%;
   }
+  
 }
 
 @media only screen and (min-width: 430px) and (max-width: 1000px) {

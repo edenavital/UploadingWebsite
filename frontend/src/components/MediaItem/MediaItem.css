@@ -1,6 +1,6 @@
 .MediaItem {
   display: inline-block;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 20px 20px 0px 0px;
   box-shadow: 0 14px 24px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   transition: 0.3s;
   margin: 6px;
@@ -11,9 +11,9 @@
   cursor: pointer;
   z-index: 0;
   position: relative;
-  
   border: 1px solid rgba(236, 81, 8, 0.5);
   box-sizing: content-box;
+  outline: none;
 }
 .MediaItem img {
   
@@ -29,5 +29,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding:3px;
+  font-size: 15px;
+  padding: 2px;
 }
