@@ -1,14 +1,23 @@
 .MediaItem {
   display: inline-block;
-  padding: 2px 16px;
+  border-radius: 20px 20px 20px 20px;
   box-shadow: 0 14px 24px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   transition: 0.3s;
   margin: 6px;
   position: relative;
-  width: 200px;
+  width: 150px;
   height: 150px;
+  background-color: #fff;
+  cursor: pointer;
+  z-index: 0;
+  position: relative;
+  
+  border: 1px solid rgba(236, 81, 8, 0.5);
+  box-sizing: content-box;
 }
 .MediaItem img {
+  
+  border-radius: 20px 20px 0px 0px;
   width: 150px;
   height: 120px;
 }
@@ -20,4 +29,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding:3px;
 }
