@@ -2,7 +2,6 @@ import React from "react";
 import "./MediaItem.css";
 import DeleteButton from "../DeleteButton/DeleteButton";
 //props: id, name, path, deleteImageHandler(id), enlargeImageHandler(path)
-import EnlargedImage from "../EnlargedImage/EnlargedImage";
 
 interface Props {
   deleteImageHandler: (id: number) => void;
@@ -19,9 +18,8 @@ const MediaItem: React.FC<Props> = ({
   id,
   name
 }) => (
-  <div className="MediaItem">
+  <div className="MediaItem" onClick={() => enlargeImageHandler(path)} >
     <DeleteButton deleteImageHandler={() => deleteImageHandler(id)} />
-    <EnlargedImage enlargeImageHandler={() => enlargeImageHandler(path)} />
     <img src={path} alt="Media" />
     <h4>{name}</h4>
   </div>
